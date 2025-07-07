@@ -11,12 +11,8 @@ const urlService = new UrlService();
 
 app.use(json());
 app.use(logger);
-
-// Pass the shared urlService instance to the route setup functions
 setShortenRoutes(app, urlService);
 setStatsRoutes(app);
-
-// Redirect route for short URLs using the shared urlService
 app.get('/:shortcode', (req, res) => {
     const { shortcode } = req.params;
     const longUrl = urlService.getLongUrl(shortcode);
